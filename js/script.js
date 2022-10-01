@@ -1,3 +1,5 @@
+
+
 window.addEventListener('DOMContentLoaded', () => {
 
     const tabs = document.querySelectorAll('.tabheader__item'),
@@ -38,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const deadline = '2022-09-30';
+    const deadline = '2022-11-01';
 
     function getTimeRemaining(endTime) {
         const t = Date.parse(endTime) - Date.parse(new Date()),
@@ -89,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
 
-    // Modal window
+////////////////////modal window/////////////////////////////////////////
     function closeModalWindow(modal) {
         modal.classList.add('hide');
         modal.classList.remove('show');
@@ -187,4 +189,43 @@ window.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
     ).render();
 
+////////////////////forms/////////////////////////////////////////
+    
+    const forms = document.querySelectorAll('form');
+
+    const message = {
+        loading: 'loading...',
+        succes: 'succes',
+        fail: 'fail'
+    };
+
+    forms.forEach(item => {
+        postData(item);
+    });
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage);
+
+            const req = new XMLHttpRequest();
+            req.open('POST', 'js/server.php');
+            
+            // req.setRequestHeader('Content-type', 'multipart/form-data');
+            const formData = new FormData(form);
+            req.send(formData);
+
+            req.addEventListener('load', () => {
+                if (req.status === 200) {
+                    console.log(req.response);
+                    statusMessage.textContent = message.succes;
+                } else {
+                    statusMessage.textContent = message.fail;
+                }
+            });
+        });
+    }
 });
