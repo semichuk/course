@@ -14,7 +14,7 @@ app.post('/', urlencodedParser, (req, res) => {
 })
 
 const port = 8080;
-const hostname = '127.0.0.1';
+const hostname = '45.12.18.88';
 app.listen(8080, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 })
