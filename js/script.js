@@ -205,18 +205,24 @@ window.addEventListener('DOMContentLoaded', () => {
     function postData(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
+            const formData = new FormData(form);
             const statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
             statusMessage.textContent = message.loading;
             form.append(statusMessage);
 
             const req = new XMLHttpRequest();
-            req.open('POST', 'js/server.php');
+            req.open('POST', 'http://localhost:8080');
             
-            // req.setRequestHeader('Content-type', 'multipart/form-data');
-            const formData = new FormData(form);
-            req.send(formData);
+            req.setRequestHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+            req.setRequestHeader('Content-type', 'application/json');
+            const object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
+            const json = JSON.stringify(object);
+            
+            req.send(json);
 
             req.addEventListener('load', () => {
                 if (req.status === 200) {
