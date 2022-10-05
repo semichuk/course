@@ -234,18 +234,7 @@ window.addEventListener('DOMContentLoaded', () => {
             })
 
             
-            // const json = JSON.stringify(object);
-
-            // req.send(json);
-
-            // req.addEventListener('load', () => {
-            //     if (req.status === 200) {
-            //         console.log(req.response);
-            //         statusMessage.textContent = message.succes;
-            //     } else {
-            //         statusMessage.textContent = message.fail;
-            //     }
-            // });
+            
         });
     }
 
