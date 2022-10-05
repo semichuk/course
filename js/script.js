@@ -58,10 +58,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function getZero(num){
-        if (num >= 0 && num < 10){
+    function getZero(num) {
+        if (num >= 0 && num < 10) {
             return `0${num}`;
-        }else{
+        } else {
             return num;
         }
     }
@@ -91,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
 
-////////////////////modal window/////////////////////////////////////////
+    ////////////////////modal window/////////////////////////////////////////
     function closeModalWindow(modal) {
         modal.classList.add('hide');
         modal.classList.remove('show');
@@ -105,11 +105,11 @@ window.addEventListener('DOMContentLoaded', () => {
     // const modalSetTime = setTimeout(openModal, 5000);
 
     const modalTrigers = document.querySelectorAll('[data-modal]'),
-          modalWindow = document.querySelector('.modal'),
-          modalCloseBtn = document.querySelector('[data-close]');
-    
-    const closeModalWindowBind = closeModalWindow.bind(null,modalWindow);
-    
+        modalWindow = document.querySelector('.modal'),
+        modalCloseBtn = document.querySelector('[data-close]');
+
+    const closeModalWindowBind = closeModalWindow.bind(null, modalWindow);
+
 
     modalTrigers.forEach((item) => {
         item.addEventListener('click', () => {
@@ -120,20 +120,20 @@ window.addEventListener('DOMContentLoaded', () => {
     modalCloseBtn.addEventListener('click', closeModalWindowBind);
 
     modalWindow.addEventListener('click', (event) => {
-        
+
         if (event.target === modalWindow) {
             closeModalWindow(event.target);
         }
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.code === 'Escape'){
+        if (e.code === 'Escape') {
             closeModalWindowBind();
         }
     })
 
     class MenuCard {
-        constructor(src, alt, title, descr, price, parentSelector){
+        constructor(src, alt, title, descr, price, parentSelector) {
             this.src = src;
             this.alt = alt;
             this.title = title;
@@ -159,10 +159,10 @@ window.addEventListener('DOMContentLoaded', () => {
             this.parent.append(element);
         }
 
-        
+
     }
 
-    new MenuCard (
+    new MenuCard(
         'img/tabs/vegy.jpg',
         "vegy",
         'Меню "Фитнес"',
@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
     ).render();
 
-    new MenuCard (
+    new MenuCard(
         "img/tabs/elite.jpg",
         "elite",
         'Меню “Премиум”',
@@ -180,7 +180,7 @@ window.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
     ).render();
 
-    new MenuCard (
+    new MenuCard(
         "img/tabs/post.jpg",
         "post",
         'Меню "Постное"',
@@ -189,8 +189,8 @@ window.addEventListener('DOMContentLoaded', () => {
         '.menu .container',
     ).render();
 
-////////////////////forms/////////////////////////////////////////
-    
+    ////////////////////forms/////////////////////////////////////////
+
     const forms = document.querySelectorAll('form');
 
     const message = {
@@ -211,27 +211,43 @@ window.addEventListener('DOMContentLoaded', () => {
             statusMessage.textContent = message.loading;
             form.append(statusMessage);
 
-            const req = new XMLHttpRequest();
-            req.open('POST', 'http://localhost:8080');
-            
-            req.setRequestHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-            req.setRequestHeader('Content-type', 'application/json');
             const object = {};
             formData.forEach((value, key) => {
                 object[key] = value;
             });
-            const json = JSON.stringify(object);
-            
-            req.send(json);
 
-            req.addEventListener('load', () => {
-                if (req.status === 200) {
-                    console.log(req.response);
-                    statusMessage.textContent = message.succes;
-                } else {
-                    statusMessage.textContent = message.fail;
+            fetch('http://127.0.0.1:8080/', {
+                method: 'POST',
+                body: JSON.stringify(object),
+                headers: {
+                    'Content-type': 'application/json'
                 }
-            });
+            }).then((res) => {
+                return res.json();
+            }).then(res => {
+                console.log(res);
+                statusMessage.textContent = message.succes;
+            }).catch(() => {
+                alert('Sorry, server is break');
+            }).finally(() => {
+                form.reset();
+            })
+
+            
+            // const json = JSON.stringify(object);
+
+            // req.send(json);
+
+            // req.addEventListener('load', () => {
+            //     if (req.status === 200) {
+            //         console.log(req.response);
+            //         statusMessage.textContent = message.succes;
+            //     } else {
+            //         statusMessage.textContent = message.fail;
+            //     }
+            // });
         });
     }
+
+
 });
