@@ -1,4 +1,4 @@
-function cards() {
+export default function cards() {
     class MenuCard {
         constructor(src, alt, title, descr, price, parentSelector) {
             this.src = src;
@@ -47,4 +47,4 @@ function cards() {
 
 }
 
-export {cards};
+// export {cards};

@@ -1,4 +1,4 @@
-function forms() {
+export default function forms() {
        ////////////////////forms/////////////////////////////////////////
 
 
@@ -62,4 +62,4 @@ function forms() {
    
 }
 
-export {forms};
+// export {forms};

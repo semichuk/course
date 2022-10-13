@@ -1,4 +1,4 @@
-function modal() {
+export default function modal() {
     ////////////////////modal window/////////////////////////////////////////
     function closeModalWindow(modal) {
         modal.classList.add('hide');

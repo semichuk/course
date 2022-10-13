@@ -1,4 +1,4 @@
-function calc() {
+export default function calc() {
     //////////////////////calculator/////////////////
 
     const result = document.querySelector('.calculating__result span');
@@ -154,4 +154,4 @@ function calc() {
     // })
 }
 
-export {calc};
+// export {calc};

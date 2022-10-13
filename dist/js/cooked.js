@@ -10,7 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "calc": () => (/* binding */ calc)
+/* harmony export */   "default": () => (/* binding */ calc)
 /* harmony export */ });
 function calc() {
     //////////////////////calculator/////////////////
@@ -168,7 +168,7 @@ function calc() {
     // })
 }
 
-
+// export {calc};
 
 
 /***/ }),
@@ -181,7 +181,7 @@ function calc() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cards": () => (/* binding */ cards)
+/* harmony export */   "default": () => (/* binding */ cards)
 /* harmony export */ });
 function cards() {
     class MenuCard {
@@ -232,7 +232,7 @@ function cards() {
 
 }
 
-
+// export {cards};
 
 /***/ }),
 
@@ -244,7 +244,7 @@ function cards() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "forms": () => (/* binding */ forms)
+/* harmony export */   "default": () => (/* binding */ forms)
 /* harmony export */ });
 function forms() {
        ////////////////////forms/////////////////////////////////////////
@@ -310,7 +310,7 @@ function forms() {
    
 }
 
-
+// export {forms};
 
 /***/ }),
 
@@ -322,6 +322,7 @@ function forms() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ modal),
 /* harmony export */   "modal": () => (/* binding */ modal)
 /* harmony export */ });
 function modal() {
@@ -380,18 +381,19 @@ function modal() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ slider),
 /* harmony export */   "slider": () => (/* binding */ slider)
 /* harmony export */ });
-function slider() {
+function slider({slidesX, sliderX, previousX, totalX, currentX, nextX, slidesWrapperX, slidesFieldX}) {
        /////////////////////////////////////////slider/////////////////////////////////////////////////////////////////////////////////////
-       const slides = document.querySelectorAll('.offer__slide'),
-       slider = document.querySelector('.offer__slider'),
-       previous = document.querySelector('.offer__slider-prev'),
-       total = document.querySelector('#total'),
-       current = document.querySelector('#current'),
-       next = document.querySelector('.offer__slider-next'),
-       slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-       slidesField = document.querySelector('.offer__slider-inner'),
+       const slides = document.querySelectorAll(slidesX),
+       slider = document.querySelector(sliderX),
+       previous = document.querySelector(previousX),
+       total = document.querySelector(totalX),
+       current = document.querySelector(currentX),
+       next = document.querySelector(nextX),
+       slidesWrapper = document.querySelector(slidesWrapperX),
+       slidesField = document.querySelector(slidesFieldX),
        width = window.getComputedStyle(slidesWrapper).width;
 
    let slideIndex = 1;
@@ -506,6 +508,7 @@ function slider() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ tabs),
 /* harmony export */   "tabs": () => (/* binding */ tabs)
 /* harmony export */ });
 function tabs() {
@@ -561,10 +564,11 @@ function tabs() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ timer),
 /* harmony export */   "timer": () => (/* binding */ timer)
 /* harmony export */ });
-function timer() {
-    const deadline = '2022-11-01';
+function timer(id , deadline) {
+    
 
     function getTimeRemaining(endTime) {
         const t = Date.parse(endTime) - Date.parse(new Date()),
@@ -613,7 +617,7 @@ function timer() {
 
     }
 
-    setClock('.timer', deadline);
+    setClock(id, deadline);
 
 }
 
@@ -691,6 +695,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+// import {calc} from './modules/calc';
+// import {cards} from './modules/cards';
+// import {forms} from './modules/forms';
+// import {modal} from './modules/modal';
+// import {slider} from './modules/slider';
+// import {tabs} from './modules/tabs';
+// import {timer} from './modules/timer';
 
 
 
@@ -707,13 +718,24 @@ window.addEventListener('DOMContentLoaded', () => {
     //       forms = require('./modules/forms'),
     //       cards = require('./modules/cards'),
     //       calc = require('./modules/calc');
-    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_5__.tabs)();
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_3__.modal)();
-    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_6__.timer)();
-    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_4__.slider)();
-    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_2__.forms)();
-    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_1__.cards)();
-    (0,_modules_calc__WEBPACK_IMPORTED_MODULE_0__.calc)();
+    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_6__["default"])('.timer','2022-12-20');
+    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_4__["default"])({
+        slidesX: '.offer__slide',
+        sliderX: '.offer__slider',
+        previousX: '.offer__slider-prev',
+        totalX: '#total',
+        currentX: '#current',
+        nextX: '.offer__slider-next',
+        slidesFieldX: '.offer__slider-inner',
+        slidesWrapperX: '.offer__slider-wrapper',
+        
+        
+    });
+    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    (0,_modules_calc__WEBPACK_IMPORTED_MODULE_0__["default"])();
     
 });
 })();

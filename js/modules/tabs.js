@@ -1,4 +1,4 @@
-function tabs() {
+export default function tabs() {
 //////////////////////////////tabs/////////////////////////////
     const tabs = document.querySelectorAll('.tabheader__item'),
         tabsContent = document.querySelectorAll('.tabcontent'),
